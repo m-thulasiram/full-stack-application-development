@@ -1,0 +1,124 @@
+/* Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Background */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+/* Glass Container */
+.container {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(15px);
+    padding: 30px;
+    width: 380px;
+    border-radius: 20px;
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+    color: white;
+}
+
+/* Title */
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+/* Input Section */
+.input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+input {
+    flex: 1;
+    padding: 12px;
+    border-radius: 10px;
+    border: none;
+    outline: none;
+    font-size: 14px;
+}
+
+/* Add Button */
+#addBtn {
+    background: #ff7eb3;
+    border: none;
+    padding: 12px 15px;
+    border-radius: 10px;
+    color: white;
+    font-weight: bold;
+    transition: 0.3s ease;
+}
+
+#addBtn:hover {
+    background: #ff4f9a;
+    transform: scale(1.05);
+}
+
+/* Task List */
+ul {
+    list-style: none;
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+/* Each Task */
+li {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 12px;
+    transition: 0.3s ease;
+    cursor: pointer;
+}
+
+li:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.3);
+}
+
+/* Completed Task */
+.completed {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+/* Delete Button */
+li button {
+    background: #ff4d4d;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 8px;
+    color: white;
+    font-size: 12px;
+    transition: 0.3s;
+}
+
+li button:hover {
+    background: #cc0000;
+    transform: scale(1.1);
+}
+
+/* Scrollbar Styling */
+ul::-webkit-scrollbar {
+    width: 6px;
+}
+
+ul::-webkit-scrollbar-thumb {
+    background: white;
+    border-radius: 10px;
+}

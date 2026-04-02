@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sport Registration Form</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #4e73df, #1cc88a);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 450px;
+            background: #ffffff;
+            padding: 30px 35px;
+            border-radius: 12px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 25px;
+            color: #333;
+        }
+
+        label {
+            font-weight: 600;
+            color: #444;
+            font-size: 14px;
+        }
+
+        input, select, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 6px 0 15px 0;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+
+        input:focus, select:focus, textarea:focus {
+            border-color: #4e73df;
+            box-shadow: 0 0 6px rgba(78, 115, 223, 0.4);
+            outline: none;
+        }
+
+        .inline-group {
+            margin-bottom: 15px;
+        }
+
+        .inline-group input {
+            width: auto;
+            margin-right: 5px;
+        }
+
+        .inline-group label {
+            margin-right: 15px;
+            font-weight: normal;
+        }
+
+        .button-group {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+        }
+
+        .btn {
+            width: 48%;
+            padding: 10px;
+            border-radius: 6px;
+            border: none;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .submit-btn {
+            background-color: #1cc88a;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background-color: #17a673;
+            transform: translateY(-2px);
+        }
+
+        .reset-btn {
+            background-color: #e74a3b;
+            color: white;
+        }
+
+        .reset-btn:hover {
+            background-color: #c0392b;
+            transform: translateY(-2px);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 500px) {
+            .container {
+                margin: 20px;
+                padding: 25px;
+            }
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+    <h2>Sports Registration Form</h2>
+
+    <form action="#" method="post">
+
+        <label>Full Name</label>
+        <input type="text" name="fullname" placeholder="Enter your full name" required>
+
+        <label>Email</label>
+        <input type="email" name="email" placeholder="Enter your email" required>
+
+        <label>Phone Number</label>
+        <input type="tel" name="phone" placeholder="Enter your phone number" required>
+
+        <label>Date of Birth</label>
+        <input type="date" name="dob" required>
+
+        <label>Gender</label>
+        <div class="inline-group">
+            <input type="radio" name="gender" value="Male" required> Male
+            <input type="radio" name="gender" value="Female"> Female
+            <input type="radio" name="gender" value="Other"> Other
+        </div>
+
+        <label>Course</label>
+        <select name="course" required>
+            <option value="">-- Select Course --</option>
+            <option value="BCA">BCA</option>
+            <option value="BSc">BSc</option>
+            <option value="BCom">BCom</option>
+            <option value="BA">BA</option>
+        </select>
+
+        <label>Address</label>
+        <textarea name="address" rows="3" placeholder="Enter your address"></textarea>
+
+        <label>Hobbies</label>
+        <div class="inline-group">
+            <input type="checkbox" name="hobby" value="Sports"> Sports
+            <input type="checkbox" name="hobby" value="Music"> Music
+            <input type="checkbox" name="hobby" value="Reading"> Reading
+        </div>
+
+        <div class="button-group">
+            <input type="submit" value="Register" class="btn submit-btn">
+            <input type="reset" value="Reset" class="btn reset-btn">
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>

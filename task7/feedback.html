@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Feedback Form</title>
+
+```
+<style>
+    body {
+        font-family: Arial;
+        background-color: #f2f2f2;
+        text-align: center;
+    }
+
+    .form-box {
+        background: white;
+        padding: 20px;
+        margin: 50px auto;
+        width: 300px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px gray;
+    }
+
+    input, textarea {
+        padding: 10px;
+        margin: 10px;
+        width: 90%;
+    }
+
+    button {
+        padding: 10px;
+        width: 95%;
+        background-color: blue;
+        color: white;
+        border: none;
+        cursor: pointer;
+    }
+
+    .highlight {
+        background-color: lightyellow;
+    }
+</style>
+
+<script>
+    function validateName(input) {
+        let value = input.value;
+        if (!/^[A-Za-z ]*$/.test(value)) {
+            alert("Only letters allowed!");
+            input.value = "";
+        }
+    }
+
+    function validateEmail(input) {
+        let value = input.value;
+        if (!value.includes("@")) {
+            alert("Invalid Email!");
+        }
+    }
+
+    function highlightField(field) {
+        field.classList.add("highlight");
+    }
+
+    function removeHighlight(field) {
+        field.classList.remove("highlight");
+    }
+
+    function submitForm() {
+        alert("Feedback submitted successfully!");
+    }
+</script>
+```
+
+</head>
+
+<body>
+
+```
+<div class="form-box">
+    <h2>Feedback Form</h2>
+
+    <input type="text" placeholder="Enter Name"
+        onkeyup="validateName(this)"
+        onmouseover="highlightField(this)"
+        onmouseout="removeHighlight(this)">
+
+    <input type="text" placeholder="Enter Email"
+        onblur="validateEmail(this)"
+        onmouseover="highlightField(this)"
+        onmouseout="removeHighlight(this)">
+
+    <textarea placeholder="Enter Feedback"
+        onmouseover="highlightField(this)"
+        onmouseout="removeHighlight(this)"></textarea>
+
+    <button ondblclick="submitForm()">
+        Submit (Double Click)
+    </button>
+</div>
+```
+
+</body>
+</html>

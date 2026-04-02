@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Professional Registration</title>
+
+<style>
+
+/* ========== RESET ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* ========== BODY ========== */
+body {
+    font-family: 'Segoe UI', sans-serif;
+    background: linear-gradient(135deg, #204fdb, #1cc88a);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* ========== FORM CARD ========== */
+.form-container {
+    background: #ffffff;
+    width: 400px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.form-container h2 {
+    text-align: center;
+    margin-bottom: 25px;
+    color: #333;
+}
+
+/* ========== INPUT GROUP ========== */
+.input-group {
+    position: relative;
+    margin-bottom: 25px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 12px 12px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    font-size: 14px;
+    outline: none;
+    transition: 0.3s;
+}
+
+.input-group label {
+    position: absolute;
+    left: 12px;
+    top: 12px;
+    color: #888;
+    font-size: 14px;
+    pointer-events: none;
+    transition: 0.3s;
+    background: white;
+    padding: 0 4px;
+}
+
+/* Floating effect */
+.input-group input:focus + label,
+.input-group input:not(:placeholder-shown) + label {
+    top: -8px;
+    font-size: 12px;
+    color: #4e73df;
+}
+
+.input-group input:focus {
+    border-color: #4e73df;
+    box-shadow: 0 0 0 3px rgba(78,115,223,0.2);
+}
+
+/* Error */
+.error {
+    color: #e74a3b;
+    font-size: 12px;
+    margin-top: 5px;
+    min-height: 14px;
+}
+
+/* Password toggle */
+.toggle-password {
+    position: absolute;
+    right: 10px;
+    top: 12px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #4e73df;
+}
+
+/* Button */
+button {
+    width: 100%;
+    padding: 12px;
+    border-radius: 8px;
+    border: none;
+    background: #4e73df;
+    color: white;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #2e59d9;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 15px rgba(0,0,0,0.15);
+}
+
+.success {
+    text-align: center;
+    margin-top: 15px;
+    color: green;
+    font-weight: 600;
+}
+
+@media(max-width:450px){
+    .form-container {
+        width: 90%;
+        padding: 30px;
+    }
+}
+
+</style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2>Create Account</h2>
+
+    <form id="registerForm" novalidate>
+
+        <div class="input-group">
+            <input type="text" id="name" placeholder=" " required>
+            <label>Name</label>
+            <div class="error" id="nameError"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="email" id="email" placeholder=" " required>
+            <label>Email</label>
+            <div class="error" id="emailError"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="text" id="phone" placeholder=" " required>
+            <label>Phone</label>
+            <div class="error" id="phoneError"></div>
+        </div>
+
+        <div class="input-group">
+            <input type="password" id="password" placeholder=" " required>
+            <label>Password</label>
+            <span class="toggle-password" onclick="togglePassword()">Show</span>
+            <div class="error" id="passwordError"></div>
+        </div>
+
+        <button type="submit">Register</button>
+
+        <div class="success" id="successMessage"></div>
+
+    </form>
+</div>
+
+<script>
+
+/* ========== FORM VALIDATION ========== */
+
+const form = document.getElementById("registerForm");
+
+form.addEventListener("submit", function(e){
+    e.preventDefault();
+    validateForm();
+});
+
+function validateForm(){
+
+    let isValid = true;
+
+    let name = document.getElementById("name").value.trim();
+    let email = document.getElementById("email").value.trim();
+    let phone = document.getElementById("phone").value.trim();
+    let password = document.getElementById("password").value.trim();
+
+    // Clear errors
+    document.querySelectorAll(".error").forEach(el => el.textContent = "");
+    document.getElementById("successMessage").textContent = "";
+
+    // Name
+    if(name.length < 3){
+        document.getElementById("nameError").textContent = "Name must be at least 3 characters";
+        isValid = false;
+    }
+
+    // Email
+    if(!/^\S+@\S+\.\S+$/.test(email)){
+        document.getElementById("emailError").textContent = "Enter valid email address";
+        isValid = false;
+    }
+
+    // Phone
+    if(!/^\d{10}$/.test(phone)){
+        document.getElementById("phoneError").textContent = "Phone must be exactly 10 digits";
+        isValid = false;
+    }
+
+    // Strong Password
+    if(!/^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/.test(password)){
+        document.getElementById("passwordError").textContent =
+        "Min 8 chars, 1 uppercase, 1 number, 1 special character";
+        isValid = false;
+    }
+
+    if(isValid){
+        document.getElementById("successMessage").textContent = "Registration Successful!";
+        form.reset();
+    }
+}
+
+/* ========== SHOW / HIDE PASSWORD ========== */
+
+function togglePassword(){
+    let passwordInput = document.getElementById("password");
+    let toggle = document.querySelector(".toggle-password");
+
+    if(passwordInput.type === "password"){
+        passwordInput.type = "text";
+        toggle.textContent = "Hide";
+    } else {
+        passwordInput.type = "password";
+        toggle.textContent = "Show";
+    }
+}
+
+</script>
+
+</body>
+</html>

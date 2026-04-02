@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Manam Thulasiram | Portfolio</title>
+
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            display: ["Poppins", "ui-sans-serif", "system-ui"],
+            body: ["Inter", "ui-sans-serif", "system-ui"],
+          },
+          colors: {
+            brand: {
+              500: "#6366f1",
+              600: "#4f46e5",
+              700: "#4338ca",
+            },
+          },
+        },
+      },
+    };
+  </script>
+
+  <!-- Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Poppins:wght@600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <style>
+    html { scroll-behavior: smooth; }
+  </style>
+</head>
+<body class="bg-gray-50 text-gray-800 font-body">
+  <div id="root"></div>
+
+  <!-- React + Babel -->
+  <script src="https://unpkg.com/react@18/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+
+  <script type="text/babel">
+    const DATA = {
+      about: {
+        name: "Manam Thulasiram",
+        title: "B.Tech CSE (Data Science) Student",
+        summary: "The foundational knowledge in machine learning, data analysis, and visualization. Enthusiastic about applying data science concepts to real-world problems and eager to gain practical experience in building ML models and data-driven applications.",
+        location: "Tirupati, Andhra Pradesh",
+        phone: "6305765060",
+        email: "mtr.manam@gmail.com",
+        linkedin: "https://www.linkedin.com/in/manam-thulasiram-740b87354/",
+        github: "https://github.com/dashboard",
+      },
+      education: [
+        {
+          school: "Vel Tech University",
+          degree: "B.Tech in Computer Science (Data Science)",
+          years: "2024 – 2027",
+          coursework: ["Data Structures", "DBMS", "Machine Learning"],
+        },
+      ],
+      skills: {
+        programming: ["Python", "Word", "Excel"],
+        libraries: ["TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy", "Matplotlib", "Seaborn"],
+        tools: ["Google Earth Engine", "Flask", "Git", "GitHub"],
+      },
+      projects: [
+        {
+          title: "Deep Learning based Crop Yield Prediction",
+          description: "Built a neural network pipeline to analyze weather and soil factors to forecast agricultural yields, enabling accurate, data-driven decisions.",
+          tech: ["Python", "TensorFlow", "Keras", "Scikit-learn", "Pandas", "NumPy", "Matplotlib"],
+          role: "Data preprocessing, model development, result analysis, and deployment.",
+          link: "#",
+        },
+      ],
+    };
+
+    const Section = ({ id, title, children }) => (
+      <section id={id} className="py-16 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+          <h2 className="text-3xl font-display font-bold text-gray-900 mb-6">{title}</h2>
+          {children}
+        </div>
+      </section>
+    );
+
+    function Navbar() {
+      return (
+        <nav className="fixed top-0 left-0 w-full bg-white shadow-md z-50">
+          <div className="max-w-6xl mx-auto px-6 py-4 flex justify-between items-center">
+            <h1 className="text-xl font-bold text-brand-700">{DATA.about.name}</h1>
+            <div className="space-x-6">
+              <a href="#education" className="hover:text-brand-600">Education</a>
+              <a href="#skills" className="hover:text-brand-600">Skills</a>
+              <a href="#projects" className="hover:text-brand-600">Projects</a>
+              <a href="#contact" className="hover:text-brand-600">Contact</a>
+            </div>
+          </div>
+        </nav>
+      );
+    }
+
+    function Hero() {
+      return (
+        <section className="pt-32 pb-20 bg-gray-50">
+          <div className="max-w-6xl mx-auto px-6 text-center">
+            <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">{DATA.about.name}</h1>
+            <p className="text-lg text-gray-600 mb-6">{DATA.about.title}</p>
+            <p className="max-w-2xl mx-auto text-gray-700">{DATA.about.summary}</p>
+          </div>
+        </section>
+      );
+    }
+
+    function Education() {
+      return (
+        <Section id="education" title="Education">
+          {DATA.education.map((edu, i) => (
+            <div key={i} className="mb-6">
+              <h3 className="text-xl font-semibold">{edu.school}</h3>
+              <p>{edu.degree} ({edu.years})</p>
+              <p className="text-sm text-gray-600">Coursework: {edu.coursework.join(", ")}</p>
+            </div>
+          ))}
+        </Section>
+      );
+    }
+
+    function Skills() {
+      return (
+        <Section id="skills" title="Skills">
+          <div className="grid md:grid-cols-3 gap-6">
+            <div>
+              <h4 className="font-semibold mb-2">Programming</h4>
+              <ul className="list-disc list-inside text-gray-700">
+                {DATA.skills.programming.map((s, i) => <li key={i}>{s}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-2">Libraries</h4>
+              <ul className="list-disc list-inside text-gray-700">
+                {DATA.skills.libraries.map((s, i) => <li key={i}>{s}</li>)}
+              </ul>
+            </div>
+            <div>
+              <h4 className="font-semibold mb-2">Tools</h4>
+              <ul className="list-disc list-inside text-gray-700">
+                {DATA.skills.tools.map((s, i) => <li key={i}>{s}</li>)}
+              </ul>
+            </div>
+          </div>
+        </Section>
+      );
+    }
+
+    function Projects() {
+      return (
+        <Section id="projects" title="Projects">
+          {DATA.projects.map((proj, i) => (
+            <div key={i} className="mb-6 border p-4 rounded-lg shadow-sm bg-gray-50">
+              <h3 className="text-xl font-semibold">{proj.title}</h3>
+              <p className="text-gray-700 mb-2">{proj.description}</p>
+              <p className="text-sm text-gray-600">Role: {proj.role}</p>
+              <p className="text-sm text-gray-600">Tech: {proj.tech.join(", ")}</p>
+            </div>
+          ))}
+        </Section>
+      );
+    }
+
+    function Contact() {
+      return (
+        <Section id="contact" title="Contact">
+          <div className="flex justify-center gap-6">
+            <a href={`tel:${DATA.about.phone}`} className="w-14 h-14 flex items-center justify-center rounded-full bg-white border-2 border-purple-700 text-purple-700 hover:bg-purple-700 hover:text-white shadow-lg transition">
+              <i className="fas fa-phone fa-lg"></i>
+            </a>
+            <a href={`mailto:${DATA.about.email}`} className="w-14 h-14 flex items-center justify-center rounded-full bg-white border-2 border-red-600 text-red-600 hover:bg-red-600 hover:text-white shadow-lg transition">
+              <i className="fas fa-envelope fa-lg"></i>
+            </a>
+            <a href={DATA.about.linkedin} target="_blank" rel="noopener noreferrer" className="w-14 h-14 flex items-center justify-center rounded-full bg-white border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white shadow-lg transition">
+              <i className="fab fa-linkedin-in fa-lg"></i>
+            </a>
+            <a href={DATA.about.github} target="_blank" rel="noopener noreferrer" className="w-14 h-14 flex items-center justify-center rounded-full bg-white border-2 border-gray-800 text-gray-800 hover:bg-gray-800 hover:text-white shadow-lg transition">
+              <i className="fab fa-github fa-lg"></i>
+            </a>
+          </div>
+        </Section>
+      );
+    }
+
+    function Footer() {
+      return (
+        <footer className="py-6 text-center text-gray-600 text-sm bg-white border-t">
+          © {new Date().getFullYear()} {DATA.about.name}. All rights reserved.
+        </footer>
+      );
+    }
+
+    function App() {
+      return (
+        <div>
+          <Navbar />
+          <Hero />
+          <Education />
+          <Skills />
+          <Projects />
+          <Contact />
+          <Footer />
+        </div>
+      );
+    }
+
+    ReactDOM.createRoot(document.getElementById("root")).render(<App />);
+  </script>
+</body>
+</html>
